@@ -1,0 +1,73 @@
+
+body {
+font-family: Arial, sans-serif;
+direction: rtl;
+text-align: right;
+max-width: 500px;
+margin: auto;
+padding: 20px;
+background-color: #2973B2;
+}
+.card{
+background-color: #F2EFE7;
+padding: 1rem;
+border-radius: 5px;
+}
+h1 {
+text-align: center;
+font-size: 60px;
+color: #2973B2;
+}
+p {
+font-size: 24px;
+color: #333;
+}
+.form-container {
+background: white;
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+label {
+display: block;
+margin-top: 10px;
+color: #333;
+}
+input, select {
+width: 100%;
+padding: 8px;
+margin-top: 5px;
+border: 1px solid #ccc;
+border-radius: 4px;
+}
+input::placeholder {
+text-align: right;
+}
+.error {
+color: red;
+display: none;
+}
+button {
+margin-top: 15px;
+padding: 12px 48px;
+background-color: #48A6A7;
+color: white;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+font-size: 16px;
+font-weight: bold;
+}
+button:hover {
+background-color: #2973B2;
+}
+h2 {
+font-size: 32px;
+color: #2973B2;
+}
+a{
+color: #2973B2;
+}
+img {
+border-radius: 5px;
+}
