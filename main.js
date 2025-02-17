@@ -43,11 +43,11 @@ document.addEventListener("DOMContentLoaded", function () {
         linkClicks++;
         localStorage.setItem("linkClicks", linkClicks);
 
-        alert(`عدد الضغطات على الرابط: ${linkClicks}`);
+        alert(` ${linkClicks}`);
     });
     
     let totalLinkClicks = parseInt(localStorage.getItem("linkClicks")) || 0;
-    console.log(`العدد الكلي للضغطات على الرابط: ${totalLinkClicks}`);
+    console.log(` ${totalLinkClicks}`);
 });
 document.getElementById("uploadForm").addEventListener("submit", async function(e) {
     e.preventDefault();
