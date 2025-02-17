@@ -35,22 +35,22 @@
             <h2>بياناتك عشان نوصلك </h2>
             <form id="surveyForm" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScU3f0chIv7itkDUJBIU4c8fHCyLUS8jFMjwliAHuljmI748g/formResponse">
                 <label for="name">اسمك:</label>
-                <input type="text" id="name" placeholder="أدخل اسمك" name="entry.936575337">
+                <input type="text" id="name" placeholder="أدخل اسمك" name="entry.936575337" pattern="[a-zA-Zأ-ي\s]*">
                 
                 <label for="phone">رقم الموبايل:</label>
-                <input type="tel" id="phone" placeholder="أدخل رقم الموبايل" name="entry.1191012234">
+                <input type="tel" id="phone" placeholder="أدخل رقم الموبايل" name="entry.1191012234" pattern="[0-9]*">
                 
                 <label for="university">الجامعة - الكلية - القسم  :</label>
-                <input type="text" id="university" placeholder="أدخل الجامعة أو التخصص" required name="entry.570289924">
+                <input type="text" id="university" placeholder="أدخل الجامعة أو التخصص (يمكنك استخدام - و / و \)" required name="entry.570289924" pattern="[a-zA-Zأ-ي\s\-\/\\]*">
                 
                 <label for="subject">اسم المادة:</label>
-                <input type="text" id="subject" placeholder="أدخل اسم المادة" required name="entry.996276213">
-
+                <input type="text" id="subject" placeholder="أدخل اسم المادة" required name="entry.996276213" pattern="[a-zA-Zأ-ي\s]*">
+                
                 <label for="subject">قولنا عاوز كام لكل محاضرة :</label>
-                <input type="text" id="subject" placeholder="أدخل السعر $ " required name="entry.1363975112">
+                <input type="text" id="subject" placeholder="أدخل السعر $" required name="entry.1363975112">
                 
                 <label for="file">ارفع نموذج واضح للمحاضرة:</label>
-                <a href="https://drive.google.com/drive/folders/14-ORLP7eRcSzQfofVcMiec64VOoiCs5I?usp=sharing" style="display: flex;" target="_blank">upload</a>
+                <input type="file" id="file" name="file" required>
                 
                 <button type="submit">إرسال</button>
             </form>
