@@ -30,38 +30,53 @@
         </p>
         <p>#من الاخر ذاكر واكسب فلوس</p>
         <h2>اكسب من المذاكره</h2>
-        <div class="form-container">
-            <h2>بياناتك عشان نوصلك </h2>
-            <form id="surveyForm" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScU3f0chIv7itkDUJBIU4c8fHCyLUS8jFMjwliAHuljmI748g/formResponse">
+        <div class="container">
+            <form id="uploadForm">
+                <h2>بياناتك عشان نوصلك  </h2>
+
+                <label for="username">اسم المستخدم</label>
+                <input type="text" id="username"
+                placeholder="أدخل أسمك اللي هترفع بيه الملف"
+                pattern="[a-zA-Zأ-ي\s]*" 
+                required>
+    
                 <label for="name">اسمك:</label>
-                <input type="text" id="name" placeholder="أدخل اسمك" name="entry.936575337" pattern="[a-zA-Zأ-ي\s]*">
-                
+                <input type="text" id="name"
+                placeholder="أدخل اسمك (اختياري)" pattern="[a-zA-Zأ-ي\s]*" >
+
                 <label for="phone">رقم الموبايل:</label>
-                <input type="tel" id="phone" placeholder="أدخل رقم الموبايل" name="entry.1191012234" pattern="[0-9]*">
-                
-                <label for="university">الجامعة - الكلية - القسم  :</label>
-                <input type="text" id="university" placeholder="أدخل الجامعة أو التخصص (يمكنك استخدام - و / و \)" required name="entry.570289924" pattern="[a-zA-Zأ-ي\s\-\/\\]*">
-                
-                <label for="subject">اسم المادة:</label>
-                <input type="text" id="subject" placeholder="أدخل اسم المادة" required name="entry.996276213" pattern="[a-zA-Zأ-ي\s]*">
-                
-                <label for="subject">قولنا عاوز كام لكل محاضرة :</label>
-                <input type="text" id="subject" placeholder="أدخل السعر $" required name="entry.1363975112">
-                
-                <label for="file">ارفع نموذج واضح للمحاضرة:</label>
-                <input type="file" id="file" name="file" required>
-                
+                <input type="tel" id="phone"placeholder="أدخل رقم الموبايل (اختياري)" pattern="[0-9]*" >
+    
+                <label for="college">الجامعة - الكلية - القسم  :</label>
+                <input type="text" id="college"placeholder="أدخل الجامعة أو التخصص (يمكنك استخدام - و / و \)"pattern="[a-zA-Zأ-ي\s\-\/\\]*" required>
+    
+                <label for="department">اسم المادة:</label>
+                <input type="text" id="department" placeholder="أدخل اسم المادة" required pattern="[a-zA-Zأ-ي\s]*">
+    
+                <label for="lectures">عدد المحاضرات</label>
+                <input type="number" id="lectures" required>
+    
+                <label for="price">قولنا عاوز كام لكل محاضرة :</label>
+                <input type="number" id="price" placeholder="أدخل السعر $" required>
+    
+    
+                <label for="fileInput">ارفع نموذج واضح للمحاضرة: (صورة أو PDF)</label>
+                <input type="file" id="fileInput" accept="image/*,application/pdf" required>
+    
                 <button type="submit">إرسال</button>
             </form>
+
             <p id="successMessage" style="display:none;">تم إرسال النموذج بنجاح!</p>
+    
         </div>
+
         <h2>
             FEEDBACK
         </h2>
         <p>
             لو عندك أى استفسارات او اقتراحات
-اتواصل على الرقم دا
-01501804261
+اتواصل معانا على القناه من
+<a href="https://t.me/+0GQzTJpRFRFhZGU8" target="_blank">هنا</a>
         </p>
     </div>
     <script src="main.js"></script>

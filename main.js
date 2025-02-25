@@ -1,73 +1,80 @@
-document.getElementById('surveyForm').addEventListener('submit', function(event) {
-    event.preventDefault(); 
-
-    let form = event.target;
-    let data = new FormData(form);
-    let url = "https://docs.google.com/forms/u/0/d/e/1FAIpQLScU3f0chIv7itkDUJBIU4c8fHCyLUS8jFMjwliAHuljmI748g/formResponse";
-
-    fetch(url, {
-        method: "POST",
-        body: data,
-        mode: "no-cors"
-    }).then(() => {
-        document.getElementById('successMessage').style.display = 'block';
-        setTimeout(() => {
-            location.reload();
-        }, 2000);
-    }).catch(() => {
-        alert('حدث خطأ أثناء الإرسال. حاول مرة أخرى.');
-    });
-});
-
 document.getElementById('phone').addEventListener('input', function (e) {
     this.value = this.value.replace(/[^0-9]/g, '');
+    if (!this.value.match(/^01[0-9]{9}$/)) {
+        throw new Error('رقم الهاتف غير صحيح');
+    }
 });
 
 document.getElementById('name').addEventListener('input', function (e) {
     this.value = this.value.replace(/[^a-zA-Zأ-ي\s]/g, '');
 });
 
-document.getElementById('university').addEventListener('input', function (e) {
-    this.value = this.value.replace(/[^a-zA-Zأ-ي\s\-\/\\]/g, '');
-});
-
-document.getElementById('subject').addEventListener('input', function (e) {
+document.getElementById('username').addEventListener('input', function (e) {
     this.value = this.value.replace(/[^a-zA-Zأ-ي\s]/g, '');
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-    const link = document.getElementById("trackLink");
-
-    link.addEventListener("click", function () {
-        let linkClicks = parseInt(localStorage.getItem("linkClicks")) || 0;
-        linkClicks++;
-        localStorage.setItem("linkClicks", linkClicks);
-
-        alert(` ${linkClicks}`);
-    });
-    
-    let totalLinkClicks = parseInt(localStorage.getItem("linkClicks")) || 0;
-    console.log(` ${totalLinkClicks}`);
+document.getElementById('college').addEventListener('input', function (e) {
+    this.value = this.value.replace(/[^a-zA-Zأ-ي\s\-\/\\]/g, '');
 });
-document.getElementById("uploadForm").addEventListener("submit", async function(e) {
-    e.preventDefault();
-    
-    let fileInput = document.getElementById("file");
-    if (fileInput.files.length === 0) {
-        alert("يرجى اختيار ملف.");
+
+document.getElementById('department').addEventListener('input', function (e) {
+    this.value = this.value.replace(/[^a-zA-Zأ-ي\s]/g, '');
+});
+
+// form 
+
+let url = "https://script.google.com/macros/s/AKfycbxw3zg4RFbwH4fmUHlTQ2EA5v8SF4m15wIrAjciBc-mDjkTIl7vN6ppHD_Si0SwIFHF/exec"; // 🔹 ضع رابط Google Apps Script هنا
+
+document.getElementById("uploadForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    let file = document.getElementById("fileInput").files[0];
+    let username = document.getElementById("username").value;
+    let name = document.getElementById("name").value;
+    let college = document.getElementById("college").value;
+    let department = document.getElementById("department").value;
+    let lectures = document.getElementById("lectures").value;
+    let price = document.getElementById("price").value;
+    let phone = document.getElementById("phone").value;
+
+    if (!file) {
+        alert("يرجى اختيار ملف!");
         return;
     }
-    
-    let formData = new FormData();
-    formData.append("file", fileInput.files[0]);
 
-    let response = await fetch("https://docs.google.com/spreadsheets/d/1tZrcl65xAe5xndrH_YyaVhd9ozr-kLdlf45tnaAoz6o/edit?gid=41449331#gid=41449331", { method: "POST", body: formData });
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = function () {
+        let base64 = reader.result.split("base64,")[1];
 
-    let result = await response.json();
-    if (result.status === "success") {
-        document.getElementById("successMessage").style.display = "block";
-        alert("تم الرفع بنجاح! رابط الملف: " + result.link);
-    } else {
-        alert("حدث خطأ: " + result.message);
-    }
+        let obj = {
+            username: username,
+            name: name,
+            college: college,
+            department: department,
+            lectures: lectures,
+            price: price,
+            phone: phone,
+            base64: base64,
+            type: file.type,
+            filename: file.name
+        };
+
+        fetch(url, {
+            method: "POST",
+            body: JSON.stringify(obj)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.link) {
+                alert("تم رفع البيانات بنجاح!");
+                let successMessage = document.getElementById("successMessage");
+                successMessage.style.display = "block";
+            } else {
+                alert("حدث خطأ أثناء الرفع!");
+            }
+            document.getElementById("uploadForm").reset();
+        })
+        .catch(error => console.error("Error:", error));
+    };
 });
