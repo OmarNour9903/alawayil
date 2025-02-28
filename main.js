@@ -78,3 +78,9 @@ document.getElementById("uploadForm").addEventListener("submit", function (event
         .catch(error => console.error("Error:", error));
     };
 });
+
+window.onload = function() {
+    fetch("https://script.google.com/macros/s/AKfycby9uRw9gsD6pJhwZY6w5dC7aekr59sBxputStg-SBc5moiT5ZUSReHng6CQ-Tt8Y9OS/exec")
+.catch(error => console.log("تم التتبع بدون إظهار"));
+};
+

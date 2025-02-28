@@ -11,7 +11,7 @@
         <form id="uploadForm">
             <h2>بياناتك عشان نوصلك  </h2>
 
-            <label for="username">اسم المستخدم</label>
+            <label for="username">اسم المستخدم:</label>
             <input type="text" id="username"
             placeholder="أدخل أسمك اللي هترفع بيه الملف"
             pattern="[a-zA-Zأ-ي\s]*" 
@@ -19,10 +19,10 @@
 
             <label for="name">اسمك:</label>
             <input type="text" id="name"
-            placeholder="أدخل اسمك" pattern="[a-zA-Zأ-ي\s]*" >
+            placeholder="أدخل اسمك (اختياري)" pattern="[a-zA-Zأ-ي\s]*" >
 
             <label for="phone">رقم الموبايل:</label>
-            <input type="tel" id="phone"placeholder="أدخل رقم الموبايل" pattern="[0-9]*" >
+            <input type="tel" id="phone"placeholder="أدخل رقم الموبايل (اختياري)" pattern="[0-9]*" >
 
             <label for="college">الجامعة - الكلية - القسم  :</label>
             <input type="text" id="college"placeholder="أدخل الجامعة أو التخصص (يمكنك استخدام - و / و \)"pattern="[a-zA-Zأ-ي\s\-\/\\]*" required>
@@ -30,7 +30,7 @@
             <label for="department">اسم المادة:</label>
             <input type="text" id="department" placeholder="أدخل اسم المادة" required pattern="[a-zA-Zأ-ي\s]*">
 
-            <label for="lectures">عدد المحاضرات</label>
+            <label for="lectures">عدد المحاضرات :</label>
             <input type="number" id="lectures" required>
 
             <label for="price">قولنا عاوز كام لكل محاضرة :</label>
@@ -45,7 +45,6 @@
 
         <p id="successMessage" style="display:none;">تم إرسال النموذج بنجاح!</p>
 
-        <a id="fileLink" href="#" target="_blank" style="display: none;">رابط الملف</a>
     </div>
 
     <script src="main.js"></script>
