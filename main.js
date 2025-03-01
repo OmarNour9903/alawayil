@@ -23,7 +23,7 @@ document.getElementById('department').addEventListener('input', function (e) {
 
 // form 
 
-const URL = "https://script.googleusercontent.com/macros/echo?user_content_key=eqIHVGZTNOZbreAzdpa5vMXvikmZJNQwAbJAkLiUf5NEBzJBlpOAh7Zh7Mmt_78c9HdPNdkm9_ZjravdXs8Jg_9TVX_hwGjNm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnKM35l339a2eYb-U4WKhl8TBnf4P2NuANJUw_yVDuHe8fKStN3QE60EXVho6FC8I9TMOMAe3w5XPXyCm28XLOhfVT6cnWde54A&lib=MbZ6Mul8rCZJS9Bn9Ve3B_iANBs6THuFY";
+const URL = "https://script.google.com/macros/s/AKfycbzBE5EfDshCVd923WDoXLh1OdtwAe9NykrWVeJRVMqRa0Dp-MqFsDx_4r4sBn2V9MBL/exec";
 
 document.getElementById("uploadForm").addEventListener("submit", async (event) => {
     event.preventDefault();
