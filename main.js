@@ -82,15 +82,21 @@ document.getElementById("uploadForm").addEventListener("submit", async (event) =
             }
             
             const data = await response.text();
-    console.log(data);
+            console.log(data);
 
-    document.getElementById("successMessage").style.display = "block";
-    event.target.reset();
+            // إظهار رسالة النجاح
+            document.getElementById("successMessage").style.display = "block";
+            // إعادة تعيين النموذج
+            event.target.reset();
         };
 
     } catch (error) {
         console.error('Error:', error);
         alert('حدث خطأ أثناء الإرسال: ' + error.message);
+    } finally {
+        // إعادة تفعيل الزر
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'إرسال';
     }
 });
 
