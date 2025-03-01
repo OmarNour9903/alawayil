@@ -23,113 +23,87 @@ document.getElementById('department').addEventListener('input', function (e) {
 
 // form 
 
-let url = "https://script.google.com/macros/s/AKfycbxw3zg4RFbwH4fmUHlTQ2EA5v8SF4m15wIrAjciBc-mDjkTIl7vN6ppHD_Si0SwIFHF/exec"; // 🔹 ضع رابط Google Apps Script هنا
+const URL = "AKfycbxw3zg4RFbwH4fmUHlTQ2EA5v8SF4m15wIrAjciBc-mDjkTIl7vN6ppHD_Si0SwIFHF/exec";
 
-document.getElementById("uploadForm").addEventListener("submit", function (event) {
+document.getElementById("uploadForm").addEventListener("submit", async (event) => {
     event.preventDefault();
-
-    let file = document.getElementById("fileInput").files[0];
-    let username = document.getElementById("username").value;
-    let name = document.getElementById("name").value;
-    let college = document.getElementById("college").value;
-    let department = document.getElementById("department").value;
-    let lectures = document.getElementById("lectures").value;
-    let price = document.getElementById("price").value;
-    let phone = document.getElementById("phone").value;
-
-    if (!file) {
-        alert("يرجى اختيار ملف!");
-        return;
-    }
-
-    let reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = function () {
-        let base64 = reader.result.split("base64,")[1];
-
-        let obj = {
-            username: username,
-            name: name,
-            college: college,
-            department: department,
-            lectures: lectures,
-            price: price,
-            phone: phone,
-            base64: base64,
-            type: file.type,
-            filename: file.name
-        };
-
-        fetch(url, {
-            method: "POST",
-            body: JSON.stringify(obj)
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.link) {
-                alert("تم رفع البيانات بنجاح!");
-                let successMessage = document.getElementById("successMessage");
-                successMessage.style.display = "block";
-            } else {
-                alert("حدث خطأ أثناء الرفع!");
-            }
-            document.getElementById("uploadForm").reset();
-        })
-        .catch(error => console.error("Error:", error));
-    };
-});
-
-async function handleSubmit(event) {
-    event.preventDefault(); // منع إعادة تحميل الصفحة
-    
-    const submitBtn = document.getElementById('submitBtn');
-    const formData = new FormData(document.getElementById('myForm'));
-    
-    // تعطيل الزر وتغيير النص
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'جاري الإرسال...';
+    const submitBtn = event.target.querySelector('button[type="submit"]');
     
     try {
-    const response = await fetch('https://script.google.com/macros/s/AKfycbyuGUHRYHE_L6q_uQv0QifTS-g0ut6sorzqBhhpLoQ/dev', {
-        method: 'POST',
-        body: formData
-    });
+        // التحقق من الحقول الفارغة
+        const requiredFields = event.target.querySelectorAll('[required]');
+        let isValid = true;
+        
+        requiredFields.forEach(field => {
+            if (!field.value.trim()) {
+                field.classList.add('invalid');
+                isValid = false;
+            }
+        });
+        
+        if (!isValid) throw new Error('يرجى ملء جميع الحقول المطلوبة');
 
-    if (response.ok) {
-        // إظهار رسالة النجاح فورًا
-        document.getElementById('successMessage').style.display = 'block';
-    } else {
-        alert('حدث خطأ أثناء الإرسال!');
-    }
+        // تعطيل الزر
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'جاري الإرسال...';
+
+        // معالجة الملف
+        const file = document.getElementById("fileInput").files[0];
+        const reader = new FileReader();
+        
+        reader.readAsDataURL(file);
+        reader.onloadend = async () => {
+            const base64 = reader.result.split("base64,")[1];
+            
+            const obj = {
+                username: encodeURIComponent(document.getElementById("username").value),
+                name: encodeURIComponent(document.getElementById("name").value),
+                college: encodeURIComponent(document.getElementById("college").value),
+                department: encodeURIComponent(document.getElementById("department").value),
+                lectures: document.getElementById("lectures").value,
+                price: document.getElementById("price").value,
+                phone: document.getElementById("phone").value,
+                base64: base64,
+                type: file.type,
+                filename: file.name
+            };
+
+            // الإرسال
+            const response = await fetch(URL, {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(obj)
+            });
+
+            if (!response.ok) throw new Error('فشل في الإتصال بالخادم');
+            
+            const data = await response.json();
+            if (data.error) throw new Error(data.error);
+            
+            document.getElementById("successMessage").style.display = "block";
+            event.target.reset(); // إعادة تعيين النموذج
+        };
+
     } catch (error) {
-    alert('فشل الإتصال بالخادم!');
+        alert(error.message);
     } finally {
-      // إعادة تمكين الزر بعد الانتهاء
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'إرسال';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'إرسال';
     }
-}
+});
 
-  // ربط الحدث بالنموذج
-document.getElementById('myForm').addEventListener('submit', handleSubmit);
-
-// لزوار الرابط الأساسي
+// ================ تتبع الزوار ================
 window.onload = function() {
-    fetch("https://script.google.com/macros/s/AKfycbwUdHP3lXeBNh3o-NsK5wTJaRKoRVdD0hJOLN00r8sJLUJt8d5wg97ZZXoS9SdXdU-V/exec?source=main")
-    .catch(error => console.log("تم تتبع الزائر الأساسي"));
+    // تحديد المصدر بناءً على الصفحة الحالية
+    const currentPage = window.location.href;
+    let source = "main"; // القيمة الافتراضية
+    
+    if (currentPage.includes("about-us.html")) { // استبدل بالرابط الداخلي الفعلي
+    source = "internal";
+    }
+
+    // إرسال طلب التتبع
+    fetch(`https://script.google.com/macros/s/your-script-id/exec?source=${source}`)
+    .then(() => console.log(`تم تتبع الزائر كمصدر: ${source}`))
+    .catch(error => console.error("حدث خطأ في التتبع:", error));
 };
-
-// لزوار الرابط الداخلي
-window.onload = function() {
-    fetch("https://omarnour9903.github.io/alawayil/about-us.html?source=internal")
-.catch(error => console.log(" تم تتبع الزائر الداخلي  "));
-};
-
-
-const currentPage = window.location.href;
-let source = "main";
-if (currentPage.includes("https://omarnour9903.github.io/alawayil/about-us.html")) { // استبدل internal-page.html برابطك الداخلي
-source = "internal";
-}
-fetch(`https://script.google.com/macros/s/AKfycbwUdHP3lXeBNh3o-NsK5wTJaRKoRVdD0hJOLN00r8sJLUJt8d5wg97ZZXoS9SdXdU-V/exec?source=${source}`);
-
