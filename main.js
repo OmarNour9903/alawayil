@@ -22,7 +22,6 @@ document.getElementById('department').addEventListener('input', function (e) {
 });
 
 // form 
-
 const URL = "https://script.google.com/macros/s/AKfycbyuGUHRYHE_L6q_uQv0QifTS-g0ut6sorzqBhhpLoQ/dev";
 
 document.getElementById("uploadForm").addEventListener("submit", async (event) => {
@@ -45,11 +44,6 @@ document.getElementById("uploadForm").addEventListener("submit", async (event) =
 
         // تعطيل الزر
         submitBtn.disabled = true;
-        submitBtn.textContent = 'تم الارسال';
-
-        // معالجة الملف
-        const file = document.getElementById("fileInput").files[0];
-        const reader = new FileReader();
         
         reader.readAsDataURL(file);
         reader.onloadend = async () => {
@@ -88,12 +82,13 @@ document.getElementById("uploadForm").addEventListener("submit", async (event) =
             document.getElementById("successMessage").style.display = "block";
             // إعادة تعيين النموذج
             event.target.reset();
+            // تغيير نص الزر إلى "تم الإرسال"
+            submitBtn.textContent = 'تم الإرسال';
         };
 
     } catch (error) {
         console.error('Error:', error);
         alert('حدث خطأ أثناء الإرسال: ' + error.message);
-    } finally {
         // إعادة تفعيل الزر
         submitBtn.disabled = false;
         submitBtn.textContent = 'إرسال';
@@ -101,12 +96,12 @@ document.getElementById("uploadForm").addEventListener("submit", async (event) =
 });
 
 window.onload = function() {
-    fetch("https://cors-anywhere.herokuapp.com/https://script.google.com/macros/s/AKfycbymxqTZAGMwOKDD222LuTGkRpa2ZHvmbtXiqDplbiiAXKfqr9rMRnYLVBG4RcEulmg7/exec?source=main") // تأكد من إضافة ?source=main
+    fetch("https://script.google.com/macros/s/AKfycbymxqTZAGMwOKDD222LuTGkRpa2ZHvmbtXiqDplbiiAXKfqr9rMRnYLVBG4RcEulmg7/exec?source=main") // تأكد من إضافة ?source=main
       .catch(error => console.log("تم التتبع"));
 };
 
 window.onload = function() {
-    fetch("https://cors-anywhere.herokuapp.com/https://omarnour9903.github.io/alawayil/about-us.html?source=internal") // تأكد من إضافة ?source=internal
+    fetch("https://omarnour9903.github.io/alawayil/about-us.html?source=internal") // تأكد من إضافة ?source=internal
       .catch(error => console.log("تم التتبع"));
 };
 
@@ -115,4 +110,4 @@ let source = "main";
 if (currentPage.includes("https://omarnour9903.github.io/alawayil/about-us.html")) { // استبدل internal-page.html برابطك الداخلي
   source = "internal";
 }
-fetch(`https://cors-anywhere.herokuapp.com/https://script.google.com/macros/s/AKfycbymxqTZAGMwOKDD222LuTGkRpa2ZHvmbtXiqDplbiiAXKfqr9rMRnYLVBG4RcEulmg7/exec?source=${source}`);
+fetch(`https://script.google.com/macros/s/AKfycbymxqTZAGMwOKDD222LuTGkRpa2ZHvmbtXiqDplbiiAXKfqr9rMRnYLVBG4RcEulmg7/exec?source=${source}`);
