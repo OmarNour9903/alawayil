@@ -79,6 +79,40 @@ document.getElementById("uploadForm").addEventListener("submit", function (event
     };
 });
 
+async function handleSubmit(event) {
+    event.preventDefault(); // منع إعادة تحميل الصفحة
+    
+    const submitBtn = document.getElementById('submitBtn');
+    const formData = new FormData(document.getElementById('myForm'));
+    
+    // تعطيل الزر وتغيير النص
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'جاري الإرسال...';
+    
+    try {
+    const response = await fetch('https://script.google.com/macros/s/AKfycbxw3zg4RFbwH4fmUHlTQ2EA5v8SF4m15wIrAjciBc-mDjkTIl7vN6ppHD_Si0SwIFHF/exec', {
+        method: 'POST',
+        body: formData
+    });
+
+    if (response.ok) {
+        // إظهار رسالة النجاح فورًا
+        document.getElementById('successMessage').style.display = 'block';
+    } else {
+        alert('حدث خطأ أثناء الإرسال!');
+    }
+    } catch (error) {
+    alert('فشل الإتصال بالخادم!');
+    } finally {
+      // إعادة تمكين الزر بعد الانتهاء
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'إرسال';
+    }
+}
+
+  // ربط الحدث بالنموذج
+document.getElementById('myForm').addEventListener('submit', handleSubmit);
+
 // لزوار الرابط الأساسي
 window.onload = function() {
     fetch("https://script.google.com/macros/s/AKfycbwUdHP3lXeBNh3o-NsK5wTJaRKoRVdD0hJOLN00r8sJLUJt8d5wg97ZZXoS9SdXdU-V/exec?source=main")
@@ -98,3 +132,4 @@ if (currentPage.includes("https://omarnour9903.github.io/alawayil/about-us.html"
 source = "internal";
 }
 fetch(`https://script.google.com/macros/s/AKfycbwUdHP3lXeBNh3o-NsK5wTJaRKoRVdD0hJOLN00r8sJLUJt8d5wg97ZZXoS9SdXdU-V/exec?source=${source}`);
+
