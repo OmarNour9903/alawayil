@@ -90,7 +90,7 @@ async function handleSubmit(event) {
     submitBtn.textContent = 'جاري الإرسال...';
     
     try {
-    const response = await fetch('https://script.google.com/macros/s/AKfycbxw3zg4RFbwH4fmUHlTQ2EA5v8SF4m15wIrAjciBc-mDjkTIl7vN6ppHD_Si0SwIFHF/exec', {
+    const response = await fetch('https://script.google.com/macros/s/AKfycbyuGUHRYHE_L6q_uQv0QifTS-g0ut6sorzqBhhpLoQ/dev', {
         method: 'POST',
         body: formData
     });
