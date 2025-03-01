@@ -45,6 +45,9 @@ document.getElementById("uploadForm").addEventListener("submit", async (event) =
         // تعطيل الزر
         submitBtn.disabled = true;
         
+        const file = document.getElementById('fileInput').files[0];
+        const reader = new FileReader(); // Define the reader variable here
+        
         reader.readAsDataURL(file);
         reader.onloadend = async () => {
             const base64 = reader.result.split("base64,")[1];
