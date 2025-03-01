@@ -45,7 +45,7 @@ document.getElementById("uploadForm").addEventListener("submit", async (event) =
 
         // تعطيل الزر
         submitBtn.disabled = true;
-        submitBtn.textContent = 'جاري الإرسال...';
+        submitBtn.textContent = 'تم الارسال';
 
         // معالجة الملف
         const file = document.getElementById("fileInput").files[0];
@@ -82,21 +82,15 @@ document.getElementById("uploadForm").addEventListener("submit", async (event) =
             }
             
             const data = await response.text();
-            console.log(data);
+    console.log(data);
 
-            // إظهار رسالة النجاح
-            document.getElementById("successMessage").style.display = "block";
-            // إعادة تعيين النموذج
-            event.target.reset();
+    document.getElementById("successMessage").style.display = "block";
+    event.target.reset();
         };
 
     } catch (error) {
         console.error('Error:', error);
         alert('حدث خطأ أثناء الإرسال: ' + error.message);
-    } finally {
-        // إعادة تفعيل الزر
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'إرسال';
     }
 });
 
