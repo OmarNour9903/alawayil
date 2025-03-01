@@ -71,6 +71,7 @@ document.getElementById("uploadForm").addEventListener("submit", async (event) =
             // الإرسال
             const response = await fetch(URL, {
                 method: "POST",
+                mode: 'no-cors',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(obj)
             });
@@ -92,16 +93,15 @@ document.getElementById("uploadForm").addEventListener("submit", async (event) =
     }
 });
 
-
 window.onload = function() {
     fetch("https://script.google.com/macros/s/AKfycbymxqTZAGMwOKDD222LuTGkRpa2ZHvmbtXiqDplbiiAXKfqr9rMRnYLVBG4RcEulmg7/exec?source=main") // تأكد من إضافة ?source=main
       .catch(error => console.log("تم التتبع"));
-  };
+};
 
-  window.onload = function() {
+window.onload = function() {
     fetch("https://omarnour9903.github.io/alawayil/about-us.html?source=internal") // تأكد من إضافة ?source=internal
       .catch(error => console.log("تم التتبع"));
-  };
+};
 
 const currentPage = window.location.href;
 let source = "main";
