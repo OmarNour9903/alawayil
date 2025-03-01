@@ -46,6 +46,8 @@ document.getElementById("uploadForm").addEventListener("submit", async (event) =
         submitBtn.disabled = true;
         
         const file = document.getElementById('fileInput').files[0];
+        if (!file) throw new Error('يرجى اختيار ملف للرفع');
+        
         const reader = new FileReader(); // Define the reader variable here
         
         reader.readAsDataURL(file);
