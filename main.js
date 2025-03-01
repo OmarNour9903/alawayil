@@ -23,7 +23,7 @@ document.getElementById('department').addEventListener('input', function (e) {
 
 // form 
 
-const URL = "https://script.google.com/macros/s/AKfycbymxqTZAGMwOKDD222LuTGkRpa2ZHvmbtXiqDplbiiAXKfqr9rMRnYLVBG4RcEulmg7/exec";
+const URL = "https://script.googleusercontent.com/macros/echo?user_content_key=eqIHVGZTNOZbreAzdpa5vMXvikmZJNQwAbJAkLiUf5NEBzJBlpOAh7Zh7Mmt_78c9HdPNdkm9_ZjravdXs8Jg_9TVX_hwGjNm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnKM35l339a2eYb-U4WKhl8TBnf4P2NuANJUw_yVDuHe8fKStN3QE60EXVho6FC8I9TMOMAe3w5XPXyCm28XLOhfVT6cnWde54A&lib=MbZ6Mul8rCZJS9Bn9Ve3B_iANBs6THuFY";
 
 document.getElementById("uploadForm").addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -92,18 +92,20 @@ document.getElementById("uploadForm").addEventListener("submit", async (event) =
     }
 });
 
-// ================ تتبع الزوار ================
-window.onload = function() {
-    // تحديد المصدر بناءً على الصفحة الحالية
-    const currentPage = window.location.href;
-    let source = "main"; // القيمة الافتراضية
-    
-    if (currentPage.includes("about-us.html")) { // استبدل بالرابط الداخلي الفعلي
-    source = "internal";
-    }
 
-    // إرسال طلب التتبع
-    fetch(`https://script.google.com/macros/s/AKfycbymxqTZAGMwOKDD222LuTGkRpa2ZHvmbtXiqDplbiiAXKfqr9rMRnYLVBG4RcEulmg7/exec?source=${source}`)
-    .then(() => console.log(`تم تتبع الزائر كمصدر: ${source}`))
-    .catch(error => console.error("حدث خطأ في التتبع:", error));
-};
+window.onload = function() {
+    fetch("https://script.google.com/macros/s/AKfycbymxqTZAGMwOKDD222LuTGkRpa2ZHvmbtXiqDplbiiAXKfqr9rMRnYLVBG4RcEulmg7/exec?source=main") // تأكد من إضافة ?source=main
+      .catch(error => console.log("تم التتبع"));
+  };
+
+  window.onload = function() {
+    fetch("https://omarnour9903.github.io/alawayil/about-us.html?source=internal") // تأكد من إضافة ?source=internal
+      .catch(error => console.log("تم التتبع"));
+  };
+
+const currentPage = window.location.href;
+let source = "main";
+if (currentPage.includes("https://omarnour9903.github.io/alawayil/about-us.html")) { // استبدل internal-page.html برابطك الداخلي
+  source = "internal";
+}
+fetch(`https://script.google.com/macros/s/AKfycbymxqTZAGMwOKDD222LuTGkRpa2ZHvmbtXiqDplbiiAXKfqr9rMRnYLVBG4RcEulmg7/exec?source=${source}`);
