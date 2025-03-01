@@ -70,11 +70,11 @@ document.getElementById("uploadForm").addEventListener("submit", async (event) =
             // الإرسال
             const response = await fetch(URL, {
                 method: "POST",
-                headers: { 
-                    'Content-Type': 'text/plain'
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(obj),
-                redirect: 'follow'
+                body: JSON.stringify(data),
             });
             if (!response.ok) {
                 throw new Error('فشل في الإتصال بالخادم');
