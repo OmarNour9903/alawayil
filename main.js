@@ -71,24 +71,26 @@ document.getElementById("uploadForm").addEventListener("submit", async (event) =
             // الإرسال
             const response = await fetch(URL, {
                 method: "POST",
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(obj)
+                headers: { 
+                    'Content-Type': 'text/plain'
+                },
+                body: JSON.stringify(obj),
+                redirect: 'follow'
             });
+            if (!response.ok) {
+                throw new Error('فشل في الإتصال بالخادم');
+            }
+            
+            const data = await response.text();
+    console.log(data);
 
-            if (!response.ok) throw new Error('فشل في الإتصال بالخادم');
-            
-            const data = await response.json();
-            if (data.error) throw new Error(data.error);
-            
-            document.getElementById("successMessage").style.display = "block";
-            event.target.reset(); // إعادة تعيين النموذج
+    document.getElementById("successMessage").style.display = "block";
+    event.target.reset();
         };
 
     } catch (error) {
-        alert(error.message);
-    } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'إرسال';
+        console.error('Error:', error);
+        alert('حدث خطأ أثناء الإرسال: ' + error.message);
     }
 });
 
