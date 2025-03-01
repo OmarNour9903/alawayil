@@ -79,8 +79,18 @@ document.getElementById("uploadForm").addEventListener("submit", function (event
     };
 });
 
+// لزوار الرابط الأساسي
 window.onload = function() {
-    fetch("https://script.google.com/macros/s/AKfycby9uRw9gsD6pJhwZY6w5dC7aekr59sBxputStg-SBc5moiT5ZUSReHng6CQ-Tt8Y9OS/exec")
-.catch(error => console.log("تم التتبع بدون إظهار"));
+    fetch("https://script.google.com/macros/s/AKfycbw62dM8tPj4PJDxilxVjk79f0zcgmoLgFU8Zl0xAegp7VeeDGtesagZszW6fmCKYPnU/exec?source=main")
+    .catch(error => console.log("تم تتبع الزائر الأساسي"));
+};
+
+const source = window.location.href.includes("page2.html") ? "internal" : "main";
+fetch(`https://script.google.com/macros/s/AKfycbw62dM8tPj4PJDxilxVjk79f0zcgmoLgFU8Zl0xAegp7VeeDGtesagZszW6fmCKYPnU/exec?source=${source}`);
+
+// لزوار الرابط الداخلي
+window.onload = function() {
+    fetch("https://script.google.com/macros/s/AKfycbw-3GsnljtFxX_3nUIpkd-bUXQ1Tv7vZpjps1VhAF_nBT0Hd6pyYD9E703D5f5-AKzb/exec?source=internal")
+.catch(error => console.log(" تم تتبع الزائر الداخلي  "));
 };
 
