@@ -23,7 +23,7 @@ document.getElementById('department').addEventListener('input', function (e) {
 
 // form 
 
-const URL = "AKfycbxw3zg4RFbwH4fmUHlTQ2EA5v8SF4m15wIrAjciBc-mDjkTIl7vN6ppHD_Si0SwIFHF/exec";
+const URL = "https://script.google.com/macros/s/AKfycbymxqTZAGMwOKDD222LuTGkRpa2ZHvmbtXiqDplbiiAXKfqr9rMRnYLVBG4RcEulmg7/exec";
 
 document.getElementById("uploadForm").addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -103,7 +103,7 @@ window.onload = function() {
     }
 
     // إرسال طلب التتبع
-    fetch(`https://script.google.com/macros/s/your-script-id/exec?source=${source}`)
+    fetch(`https://script.google.com/macros/s/AKfycbymxqTZAGMwOKDD222LuTGkRpa2ZHvmbtXiqDplbiiAXKfqr9rMRnYLVBG4RcEulmg7/exec?source=${source}`)
     .then(() => console.log(`تم تتبع الزائر كمصدر: ${source}`))
     .catch(error => console.error("حدث خطأ في التتبع:", error));
 };
