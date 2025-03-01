@@ -82,25 +82,31 @@ document.getElementById("uploadForm").addEventListener("submit", async (event) =
             }
             
             const data = await response.text();
-    console.log(data);
+            console.log(data);
 
-    document.getElementById("successMessage").style.display = "block";
-    event.target.reset();
+            // إظهار رسالة النجاح
+            document.getElementById("successMessage").style.display = "block";
+            // إعادة تعيين النموذج
+            event.target.reset();
         };
 
     } catch (error) {
         console.error('Error:', error);
         alert('حدث خطأ أثناء الإرسال: ' + error.message);
+    } finally {
+        // إعادة تفعيل الزر
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'إرسال';
     }
 });
 
 window.onload = function() {
-    fetch("https://script.google.com/macros/s/AKfycbymxqTZAGMwOKDD222LuTGkRpa2ZHvmbtXiqDplbiiAXKfqr9rMRnYLVBG4RcEulmg7/exec?source=main") // تأكد من إضافة ?source=main
+    fetch("https://cors-anywhere.herokuapp.com/https://script.google.com/macros/s/AKfycbymxqTZAGMwOKDD222LuTGkRpa2ZHvmbtXiqDplbiiAXKfqr9rMRnYLVBG4RcEulmg7/exec?source=main") // تأكد من إضافة ?source=main
       .catch(error => console.log("تم التتبع"));
 };
 
 window.onload = function() {
-    fetch("https://omarnour9903.github.io/alawayil/about-us.html?source=internal") // تأكد من إضافة ?source=internal
+    fetch("https://cors-anywhere.herokuapp.com/https://omarnour9903.github.io/alawayil/about-us.html?source=internal") // تأكد من إضافة ?source=internal
       .catch(error => console.log("تم التتبع"));
 };
 
@@ -109,4 +115,4 @@ let source = "main";
 if (currentPage.includes("https://omarnour9903.github.io/alawayil/about-us.html")) { // استبدل internal-page.html برابطك الداخلي
   source = "internal";
 }
-fetch(`https://script.google.com/macros/s/AKfycbymxqTZAGMwOKDD222LuTGkRpa2ZHvmbtXiqDplbiiAXKfqr9rMRnYLVBG4RcEulmg7/exec?source=${source}`);
+fetch(`https://cors-anywhere.herokuapp.com/https://script.google.com/macros/s/AKfycbymxqTZAGMwOKDD222LuTGkRpa2ZHvmbtXiqDplbiiAXKfqr9rMRnYLVBG4RcEulmg7/exec?source=${source}`);
