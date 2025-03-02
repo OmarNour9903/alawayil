@@ -22,7 +22,7 @@ document.getElementById('department').addEventListener('input', function (e) {
 });
 
 // form 
-let url = "https://script.google.com/macros/s/AKfycbwogqz66crvru9h3zlFcVfEC1j2dKa3jl9_rhEV7CyCr_KjnD1fEF561ECJixmOqllJ/exec"; 
+const url = "https://script.google.com/macros/s/AKfycbwogqz66crvru9h3zlFcVfEC1j2dKa3jl9_rhEV7CyCr_KjnD1fEF561ECJixmOqllJ/exec"; 
 
 document.getElementById("uploadForm").addEventListener("submit", function (event) {
     event.preventDefault(); 
