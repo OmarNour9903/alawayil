@@ -74,7 +74,7 @@ document.getElementById("uploadForm").addEventListener("submit", async (event) =
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(data),
+                body: JSON.stringify(obj),
             });
             if (!response.ok) {
                 throw new Error('فشل في الإتصال بالخادم');
