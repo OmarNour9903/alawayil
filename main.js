@@ -71,6 +71,7 @@ document.getElementById("uploadForm").addEventListener("submit", function (event
                 fileLink.href = data.link;
                 fileLink.textContent = "رابط الملف";
                 fileLink.style.display = "block";
+                document.getElementById("successMessage").style.display = "block";
             } else {
                 alert("حدث خطأ أثناء الرفع!");
             }
@@ -79,7 +80,6 @@ document.getElementById("uploadForm").addEventListener("submit", function (event
         .catch(error => console.error("Error:", error));
     };
 });
-
 
 window.onload = function() {
     fetch("https://script.google.com/macros/s/AKfycbyoH8W-imWub0NjQnnjd5RTf7by0GgnN3G8ve4VLzphw2YHdp0A6P6d1M208Lnj6Uww/exec?source=main") // تأكد من إضافة ?source=main
