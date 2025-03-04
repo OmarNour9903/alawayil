@@ -93,18 +93,18 @@ document.getElementById("uploadForm").addEventListener("submit", function (event
 });
 
 window.onload = function() {
-    fetch("https://script.google.com/macros/s/AKfycbyuGUHRYHE_L6q_uQv0QifTS-g0ut6sorzqBhhpLoQ/dev?source=main") // تأكد من إضافة ?source=main
-      .catch(error => console.log("تم التتبع"));
-};
+    fetch("https://script.google.com/macros/s/AKfycbyuGUHRYHE_L6q_uQv0QifTS-g0ut6sorzqBhhpLoQ/dev?source=main")
+      .catch(error => console.log("تم تتبع الزائر الأساسي"));
+  };
 
-window.onload = function() {
-    fetch("https://omarnour9903.github.io/alawayil/about-us.html?source=internal") // تأكد من إضافة ?source=internal
-      .catch(error => console.log("تم التتبع"));
-};
+  window.onload = function() {
+    fetch("https://omarnour9903.github.io/alawayil/about-us.html?source=internal")
+      .catch(error => console.log("تم تتبع الزائر الداخلي"));
+  };
 
 const currentPage = window.location.href;
 let source = "main";
-if (currentPage.includes("https://omarnour9903.github.io/alawayil/about-us.html")) { // استبدل internal-page.html برابطك الداخلي
+if (currentPage.includes("https://omarnour9903.github.io/alawayil/about-us.html")) { // استبدل برابطك الداخلي
   source = "internal";
 }
 fetch(`https://script.google.com/macros/s/AKfycbyuGUHRYHE_L6q_uQv0QifTS-g0ut6sorzqBhhpLoQ/dev?source=${source}`);
