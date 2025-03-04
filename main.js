@@ -91,13 +91,3 @@ document.getElementById("uploadForm").addEventListener("submit", function (event
         });
     };
 });
-
-window.onload = function() {
-     // تحديد نوع الزائر بناءً على الصفحة الحالية
-  const isInternal = window.location.href.includes("internal"); // تغيير الشرط حسب احتياجك
-  const source = isInternal ? "internal" : "main";
-  
-    fetch(`https://script.google.com/macros/s/AKfycbxwqXfrheDtXtGp6tGkPSQoSZik7i5SGMujPF_EqWjEbcNXk9x7JFFs7H2NNnXSPDLl/exec?source=${source}`)
-      .then(response => console.log(`تم تتبع الزائر: ${source}`))
-      .catch(error => console.error("خطأ في التتبع:", error));
-  };

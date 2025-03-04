@@ -33,5 +33,14 @@
     </div>
 
     <script src="main.js"></script>
+    <script>
+        window.onload = function() {
+          const source = "internal"; // مصدر الزائر الداخلي
+          
+          fetch(`https://script.google.com/macros/s/AKfycbxwqXfrheDtXtGp6tGkPSQoSZik7i5SGMujPF_EqWjEbcNXk9x7JFFs7H2NNnXSPDLl/exec?source=${source}`)
+            .then(() => console.log("تم تسجيل الزائر الداخلي"))
+            .catch(error => console.error("خطأ:", error));
+        };
+        </script>
 </body>
 </html>
