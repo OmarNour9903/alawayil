@@ -98,7 +98,7 @@ window.onload = function() {
   };
 
   window.onload = function() {
-    fetch("https://script.google.com/macros/s/AKfycbzQaszf7VIAOsap446oenWtDPlCriRcsYfPwndzgjVMI9ejnxnqubsfsgMT_TbpvdJS/exec?source=internal")
+    fetch("https://omarnour9903.github.io/alawayil/about-us.html?source=internal")
       .catch(error => console.log("تم تتبع الزائر الداخلي"));
   };
 
