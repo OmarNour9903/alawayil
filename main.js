@@ -102,9 +102,3 @@ window.onload = function() {
       .catch(error => console.log("تم تتبع الزائر الداخلي"));
   };
 
-const currentPage = window.location.href;
-let source = "main";
-if (currentPage.includes("https://omarnour9903.github.io/alawayil/about-us.html")) { // استبدل برابطك الداخلي
-  source = "internal";
-}
-fetch(`https://script.google.com/macros/s/AKfycbzQaszf7VIAOsap446oenWtDPlCriRcsYfPwndzgjVMI9ejnxnqubsfsgMT_TbpvdJS/exec?source=${source}`);
