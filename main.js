@@ -23,7 +23,7 @@ document.getElementById('department').addEventListener('input', function (e) {
 
 // form 
 
-let url = "https://script.google.com/macros/s/AKfycbzQaszf7VIAOsap446oenWtDPlCriRcsYfPwndzgjVMI9ejnxnqubsfsgMT_TbpvdJS/exec"; // 🔹 ضع رابط Google Apps Script هنا
+let url = "https://script.google.com/macros/s/AKfycbxgD9nZU1x113Lr03iEDPZ1ffxx60sYhJTudNDIz_XrG7dxAJWasKnDzro7Y_vxJkSc/exec"; // 🔹 ضع رابط Google Apps Script هنا
 
 document.getElementById("uploadForm").addEventListener("submit", function (event) {
     event.preventDefault();
@@ -93,11 +93,11 @@ document.getElementById("uploadForm").addEventListener("submit", function (event
 });
 
 window.onload = function() {
-    fetch("https://script.google.com/macros/s/AKfycbzQaszf7VIAOsap446oenWtDPlCriRcsYfPwndzgjVMI9ejnxnqubsfsgMT_TbpvdJS/exec?source=main")
-      .catch(error => console.log("تم تتبع الزائر الأساسي"));
-  };
-
-  window.onload = function() {
-    fetch("https://script.google.com/macros/s/AKfycbzQaszf7VIAOsap446oenWtDPlCriRcsYfPwndzgjVMI9ejnxnqubsfsgMT_TbpvdJS/exec?source=internal")
-      .catch(error => console.log("تم تتبع الزائر الداخلي"));
+    // تحديد المصدر بناءً على الصفحة أو الشرط المطلوب
+    const sourceParam = new URLSearchParams(window.location.search).get('source');
+    const source = sourceParam === 'internal' ? 'internal' : 'main'; // الافتراضي main
+  
+    fetch(`https://script.google.com/macros/s/AKfycbxgD9nZU1x113Lr03iEDPZ1ffxx60sYhJTudNDIz_XrG7dxAJWasKnDzro7Y_vxJkSc/exec?source=${source}`)
+      .then(response => console.log(`تم تتبع الزائر: ${source}`))
+      .catch(error => console.error("خطأ في التتبع:", error));
   };
