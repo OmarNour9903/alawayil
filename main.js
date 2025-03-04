@@ -22,10 +22,16 @@ document.getElementById('department').addEventListener('input', function (e) {
 });
 
 // form 
-const url = "https://script.google.com/macros/s/AKfycbyoH8W-imWub0NjQnnjd5RTf7by0GgnN3G8ve4VLzphw2YHdp0A6P6d1M208Lnj6Uww/exec"; 
+
+let url = "https://script.google.com/macros/s/AKfycbxw3zg4RFbwH4fmUHlTQ2EA5v8SF4m15wIrAjciBc-mDjkTIl7vN6ppHD_Si0SwIFHF/exec"; // 🔹 ضع رابط Google Apps Script هنا
 
 document.getElementById("uploadForm").addEventListener("submit", function (event) {
-    event.preventDefault(); 
+    event.preventDefault();
+
+    let submitBtn = document.getElementById("submitBtn");
+    let spinner = document.getElementById("spinner");
+    submitBtn.disabled = true;
+    spinner.style.display = "inline-block";
 
     let file = document.getElementById("fileInput").files[0];
     let username = document.getElementById("username").value;
@@ -38,6 +44,8 @@ document.getElementById("uploadForm").addEventListener("submit", function (event
 
     if (!file) {
         alert("يرجى اختيار ملف!");
+        submitBtn.disabled = false;
+        spinner.style.display = "none";
         return;
     }
 
@@ -67,33 +75,19 @@ document.getElementById("uploadForm").addEventListener("submit", function (event
         .then(data => {
             if (data.link) {
                 alert("تم رفع البيانات بنجاح!");
-                let fileLink = document.getElementById("fileLink");
-                fileLink.href = data.link;
-                fileLink.textContent = "رابط الملف";
-                fileLink.style.display = "block";
-                document.getElementById("successMessage").style.display = "block";
+                let successMessage = document.getElementById("successMessage");
+                successMessage.style.display = "block";
             } else {
                 alert("حدث خطأ أثناء الرفع!");
             }
-            document.getElementById("uploadForm").reset(); 
+            document.getElementById("uploadForm").reset();
+            submitBtn.disabled = false;
+            spinner.style.display = "none";
         })
-        .catch(error => console.error("Error:", error));
+        .catch(error => {
+            console.error("Error:", error);
+            submitBtn.disabled = false;
+            spinner.style.display = "none";
+        });
     };
 });
-
-window.onload = function() {
-    fetch("https://script.google.com/macros/s/AKfycbyoH8W-imWub0NjQnnjd5RTf7by0GgnN3G8ve4VLzphw2YHdp0A6P6d1M208Lnj6Uww/exec?source=main") // تأكد من إضافة ?source=main
-      .catch(error => console.log("تم التتبع"));
-};
-
-window.onload = function() {
-    fetch("https://omarnour9903.github.io/alawayil/about-us.html?source=internal") // تأكد من إضافة ?source=internal
-      .catch(error => console.log("تم التتبع"));
-};
-
-const currentPage = window.location.href;
-let source = "main";
-if (currentPage.includes("https://omarnour9903.github.io/alawayil/about-us.html")) { // استبدل internal-page.html برابطك الداخلي
-  source = "internal";
-}
-fetch(`https://script.google.com/macros/s/AKfycbyoH8W-imWub0NjQnnjd5RTf7by0GgnN3G8ve4VLzphw2YHdp0A6P6d1M208Lnj6Uww/exec?source=${source}`);
