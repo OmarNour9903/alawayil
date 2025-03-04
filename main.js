@@ -23,7 +23,7 @@ document.getElementById('department').addEventListener('input', function (e) {
 
 // form 
 
-let url = "https://script.google.com/macros/s/AKfycbxw3zg4RFbwH4fmUHlTQ2EA5v8SF4m15wIrAjciBc-mDjkTIl7vN6ppHD_Si0SwIFHF/exec"; // 🔹 ضع رابط Google Apps Script هنا
+let url = "https://script.google.com/macros/s/AKfycbyuGUHRYHE_L6q_uQv0QifTS-g0ut6sorzqBhhpLoQ/dev"; // 🔹 ضع رابط Google Apps Script هنا
 
 document.getElementById("uploadForm").addEventListener("submit", function (event) {
     event.preventDefault();
@@ -93,7 +93,7 @@ document.getElementById("uploadForm").addEventListener("submit", function (event
 });
 
 window.onload = function() {
-    fetch("https://script.google.com/macros/s/AKfycbyoH8W-imWub0NjQnnjd5RTf7by0GgnN3G8ve4VLzphw2YHdp0A6P6d1M208Lnj6Uww/exec?source=main") // تأكد من إضافة ?source=main
+    fetch("https://script.google.com/macros/s/AKfycbyuGUHRYHE_L6q_uQv0QifTS-g0ut6sorzqBhhpLoQ/dev?source=main") // تأكد من إضافة ?source=main
       .catch(error => console.log("تم التتبع"));
 };
 
@@ -107,4 +107,4 @@ let source = "main";
 if (currentPage.includes("https://omarnour9903.github.io/alawayil/about-us.html")) { // استبدل internal-page.html برابطك الداخلي
   source = "internal";
 }
-fetch(`https://script.google.com/macros/s/AKfycbyoH8W-imWub0NjQnnjd5RTf7by0GgnN3G8ve4VLzphw2YHdp0A6P6d1M208Lnj6Uww/exec?source=${source}`);
+fetch(`https://script.google.com/macros/s/AKfycbyuGUHRYHE_L6q_uQv0QifTS-g0ut6sorzqBhhpLoQ/dev?source=${source}`);
